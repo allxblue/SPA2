@@ -1,24 +1,27 @@
-# spa2
+# Vue.js SPA Boilerplate
+Vue.js base SPA boilerplate
 
-## Project setup
-```
-yarn install
+## Features
+- Vue Router 3
+- Vuex
+- SCSS
+- nested router and layout
+
+
+## Build Setup
+``` bash
+# clone repo
+git clone 
+
+# install dependencies
+npm install
+
+# serve with hot reload at localhost:8080
+npm run serve
+
+# build for production with minification
+npm run build
 ```
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+# TODO
 
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

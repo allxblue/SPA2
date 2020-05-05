@@ -1,0 +1,219 @@
+/** ___  style-effects  ____________________________________________
+ * 
+ *    此為已定義完成的樣式，同一網站請從這取用樣式
+ *    還沒拆開base.css前都是限制區域
+ * ___________________________________________________________ */
+ 
+%clearfix:after{
+  content:"";
+  clear:both;
+  display: block;
+  font-size: 0;
+  height: 0;
+  visibility: hidden;
+}
+
+%show {
+  display: block !important;
+}
+
+%hide {
+  display: none !important;
+}
+
+%paused {
+  -webkit-animation-play-state: paused;
+     -moz-animation-play-state: paused;
+       -o-animation-play-state: paused;
+          animation-play-state: paused;
+}
+
+%poa{
+  position: absolute;
+}
+
+%por{
+  position: relative;
+}
+
+%border-box{
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+/* ------ 等比區塊 ------ */
+/* fit-wrapper 使用 padding-top 處理等比
+ * fit-content 填滿內容
+ */
+%fit-wrapper {
+  position: relative;
+  width: 100%;
+  height: 0; 
+
+  > .fit-content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box; 
+  }
+}
+
+
+/* ------ 陰影 ------ */
+/*參數：x軸、y軸、柔化、(距離)、顏色*/
+%block-shadow{
+ -webkit-box-shadow: 0px 2px 10px -3px rgba(0, 0, 0, .6) ;
+    -moz-box-shadow: 0px 2px 10px -3px rgba(0, 0, 0, .6) ;
+         box-shadow: 0px 2px 10px -3px rgba(0, 0, 0, .6) ;
+}
+
+%block-shadow-hover{
+ -webkit-box-shadow: 0px 5px 15px -3px rgba(0, 0, 0, .6) ;
+    -moz-box-shadow: 0px 5px 15px -3px rgba(0, 0, 0, .6) ;
+         box-shadow: 0px 5px 15px -3px rgba(0, 0, 0, .6) ;
+}
+
+%text_shadow{
+  text-shadow: 0px 1px 1px #fff;
+}
+
+
+/* ------ 漸變 ------ */
+
+%trs{
+-webkit-transition: all 0.2s ease-in-out;
+   -moz-transition: all 0.2s ease-in-out;
+     -o-transition: all 0.2s ease-in-out;
+        transition: all 0.2s ease-in-out;
+}
+
+%trs-1s{
+-webkit-transition: all 1s ease-in-out;
+   -moz-transition: all 1s ease-in-out;
+     -o-transition: all 1s ease-in-out;
+        transition: all 1s ease-in-out;
+}
+
+%trs-4ms{
+-webkit-transition: all 0.4s ease-in-out;
+   -moz-transition: all 0.4s ease-in-out;
+     -o-transition: all 0.4s ease-in-out;
+        transition: all 0.4s ease-in-out;
+}
+
+%easeOutQuint-1s{
+-webkit-transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
+   -moz-transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
+     -o-transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
+        transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+%easeOutQuint-4ms{
+  -webkit-transition: all .4s cubic-bezier(0.23, 1, 0.32, 1);
+     -moz-transition: all .4s cubic-bezier(0.23, 1, 0.32, 1);
+       -o-transition: all .4s cubic-bezier(0.23, 1, 0.32, 1);
+          transition: all .4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* ------ 小三角形 ------ */
+%arrow:after{
+  content: "";
+  border-left:  4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top:   4px solid #000;
+  width: 0px;
+  height: 0px;
+}
+
+/* ------ 不換行 ------ */
+%nowrap{
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space : nowrap;
+}
+
+/* ------ 圖片按鈕遮字 ------ */
+%image-button-hide-text{
+  text-indent: 150%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+%styledScrollbar{
+  &::-webkit-scrollbar-track
+  {
+    background-color: $scrollbar-bg;
+  }
+
+  &::-webkit-scrollbar
+  {
+    width: 4px;
+    background-color: $scrollbar-bg;
+  }
+
+  &::-webkit-scrollbar-thumb
+  {
+    border-radius: 8px;
+    background-color: $scrollbar-bar;
+  }
+}
+
+// @for $i from 1 to 10 {
+//   .type-#{$i} > .doll{
+//     .mask{
+//       clip-path: url(#avatar-#{$i}-clip);
+//       -webkit-clip-path: url(#avatar-#{$i}-clip);
+//     }
+//   }
+// }
+
+
+%animated {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  opacity: 0;
+}
+
+
+%fadeIn {
+  animation-name: fadeIn;
+}
+
+%fadeInLeft {
+  animation-duration: .3s;
+  animation-name: fadeInLeft;
+}
+
+%bounce {
+  animation-name: bounce;
+}
+
+%anim-breathe {
+  animation: breathe 3s ease-in-out infinite forwards;
+}
+
+
+%anim-step {
+  animation: keyStep 1s step-end infinite forwards;
+}
+
+
+%zoomIn {
+  @extend %animated;
+  animation-duration: 1s;
+  animation-name: zoomIn;
+  pointer-events: none;
+  
+}
+
+%zoomOut {
+  @extend %animated;
+  animation-duration: 1.2s;
+  animation-name: zoomOut;
+  pointer-events: none;
+}
+

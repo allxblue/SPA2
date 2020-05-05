@@ -1,0 +1,49 @@
+/** ___  Setting  __________________________________________________
+ * 
+ *    此檔案為網站設定檔，包含基本字體、顏色、尺寸、網址
+ *    可以透過切換此檔進行改動
+ * ___________________________________________________________ */
+
+
+$header-menu-height: 60px; // 上方選單高度
+$submenu-width: 270px; // 子選單第一層
+$mobile-menu-height: 60px;
+
+$main-color: #24a0f5;
+
+$base-font-color: #828ea1;
+$base-hover-font-color: #333;
+$base-hover-bg: rgba(130,142,161,.3);
+$base-hover-order: rgba(130,142,161,.3);
+
+$base-bg-color: #263043;
+
+// form base setting
+$formColor: #ccc;
+$formBg: $base-bg-color;
+$formDropdownBg: #1d2635;
+
+// select item
+$selectBg: $formColor;
+$selectFontColor: #ccc;
+$selectLine: #ccc;
+$selectHoverBg: #263043;
+$selectHoverFontColor: #ccc;
+$selectHoverLine: $main-color;
+
+
+
+// Table color
+$table-th-font-color: #828ea1;
+$table-td-font-color: #edf4f8;
+$table-border-color: #293448;
+
+$table-td-hover-bg: rgba(0, 0, 0, .1);
+
+// error color
+$error-color: #EB4D5C;
+
+
+// scroll bar
+$scrollbar-bg: #202f47;
+$scrollbar-bar: #32425b;

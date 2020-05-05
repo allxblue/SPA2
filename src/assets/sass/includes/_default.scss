@@ -1,0 +1,84 @@
+/** ___  Default Reset  ____________________________________________
+ * 
+ *    此為一般頁面初始值設定
+ * ___________________________________________________________ */
+
+
+/* ------ 字型 ------ */
+body, input, a{
+  font-family: "Segoe UI", "Noto Sans TC", "文泉驛正黑", "WenQuanYi Zen Hei", "儷黑 Pro", "LiHei Pro", "微軟正黑體", "Microsoft JhengHei", sans-serif;
+}
+
+li, a, img, button, input, select{
+  outline: none;
+}
+
+
+a:link{
+	color: $base-font-color; 
+	text-decoration: none;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+a:visited{
+	text-decoration: none;
+}
+
+a:hover{
+	color: $base-hover-font-color;
+}
+
+
+.loading:before{
+  content: url('data:image/svg+xml; utf8, <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" class="lds-bricks" style="background:0 0"><rect fill="#fa9300" x="15" y="18.49" width="30" height="30" rx="10" ry="10"><animate attributeName="x" calcMode="linear" values="15;55;55;55;55;15;15;15;15" keyTimes="0;0.083;0.25;0.333;0.5;0.583;0.75;0.833;1" dur="1.1" begin="-1.0083333333333333s" repeatCount="indefinite"/><animate attributeName="y" calcMode="linear" values="15;55;55;55;55;15;15;15;15" keyTimes="0;0.083;0.25;0.333;0.5;0.583;0.75;0.833;1" dur="1.1" begin="-0.7333333333333334s" repeatCount="indefinite"/></rect><rect fill="#fbc70d" x="55" y="55" width="30" height="30" rx="10" ry="10"><animate attributeName="x" calcMode="linear" values="15;55;55;55;55;15;15;15;15" keyTimes="0;0.083;0.25;0.333;0.5;0.583;0.75;0.833;1" dur="1.1" begin="-0.6416666666666667s" repeatCount="indefinite"/><animate attributeName="y" calcMode="linear" values="15;55;55;55;55;15;15;15;15" keyTimes="0;0.083;0.25;0.333;0.5;0.583;0.75;0.833;1" dur="1.1" begin="-0.3666666666666667s" repeatCount="indefinite"/></rect><rect fill="#e73820" x="55" y="15" width="30" height="30" rx="10" ry="10"><animate attributeName="x" calcMode="linear" values="15;55;55;55;55;15;15;15;15" keyTimes="0;0.083;0.25;0.333;0.5;0.583;0.75;0.833;1" dur="1.1" begin="-0.275s" repeatCount="indefinite"/><animate attributeName="y" calcMode="linear" values="15;55;55;55;55;15;15;15;15" keyTimes="0;0.083;0.25;0.333;0.5;0.583;0.75;0.833;1" dur="1.1" begin="0s" repeatCount="indefinite"/></rect></svg>');
+  position: fixed;
+  left: 0; top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, .8);
+  color: #fff;
+  font-size: 1.5em;
+  z-index: 3;
+}
+
+strong{
+	font-weight: bold;
+}
+
+section, div, main, body{ 
+  &::-webkit-scrollbar-track
+  {
+    background-color: rgba(0, 0, 0, .2);
+  }
+
+  &::-webkit-scrollbar
+  {
+    width: 4px;
+    background-color: rgba(0, 0, 0, .2);
+  }
+
+  &::-webkit-scrollbar-thumb
+  {
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, .8);
+  }
+}
+
+.nav{
+    display: flex;
+    list-style: none;
+    padding: .5em 1em;
+
+    .nav-items{
+      list-style: none;
+      display: flex;
+    }
+    .nav-item {
+      > a{
+        cursor: pointer;
+      }
+    }
+  }

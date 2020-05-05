@@ -1,0 +1,21 @@
+/* -------------- Fonts 字型管理 ------------- */
+
+// icomoon fonts
+
+// import google fonts
+@import url('//fonts.googleapis.com/css?family=Roboto:100, 300, 400, 500, 700');
+
+// 思源體
+@import url("//fonts.googleapis.com/earlyaccess/notosanstc.css");
+
+
+@font-face {
+  font-family: "Segoe UI";
+  font-weight: 200;
+  src: local("Segoe UI Light");
+}
+@font-face {
+  font-family: "Segoe UI";
+  font-weight: 300;
+  src: local("Segoe UI Semilight");
+}
