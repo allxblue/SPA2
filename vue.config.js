@@ -1,10 +1,12 @@
-const isProd = process.env.NODE_ENV === "production"
+const IS_PROD = ["production", "prod"].includes(process.env.NODE_ENV);
 const path = require('path');
+const PurgecssPlugin = require("purgecss-webpack-plugin");
+const glob = require('glob-all');
+const mocker = require('./mock');
 
 module.exports = {
-  // 选项...
   configureWebpack: config => {
-    if (isProd) {
+    if (IS_PROD) {
       config.plugins.push( // 拔掉不需要的 css
         new PurgecssPlugin({
           paths: glob.sync([path.join(__dirname, "./**/*.vue")]),
@@ -41,11 +43,12 @@ module.exports = {
         return options
       })
     config.resolve.alias
-        .set('CC', path.resolve(__dirname, 'src/components/common'))
-        .set('Utils', path.resolve(__dirname, 'src/utils'));
-        // 在html中嵌入一个 isProduction 变量, 可通过模板语法读取
+      .set('CC', path.resolve(__dirname, 'src/components/common'))
+      .set('Utils', path.resolve(__dirname, 'src/utils'));
+
+    // 在 html 中使用 isProd 語法, 可透過樣板語法取得
     config.plugin('html').tap(args => {
-      args[0].isProduction = true
+      args[0].isProd = IS_PROD
       return args
     })
   },
@@ -61,5 +64,27 @@ module.exports = {
       }
     }
   },
-      
+  devServer: {
+    compress: false,
+    open: true,
+    hot: true,
+    stats: {
+      colors: true,
+      hash: false,
+      version: false,
+      timings: false,
+      assets: false,
+      chunks: false,
+      modules: false,
+      reasons: false,
+      children: false,
+      source: false,
+      errors: false,
+      errorDetails: false,
+      warnings: false,
+    },
+    before: mocker,
+  },
+  productionSourceMap: false,
+
 }

@@ -2,10 +2,16 @@
 Vue.js base SPA boilerplate
 
 ## Features
-- Vue Router 3
-- Vuex
 - SCSS
+- Mockjs
 - nested router and layout
+
+## UI Components
+`Element UI`
+
+## Dashboard
+``
+
 
 
 ## Build Setup

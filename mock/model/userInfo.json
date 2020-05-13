@@ -1,0 +1,14 @@
+ {
+   "error": 0,
+   "data":
+   {
+     "userId": "@id()",
+     "username": "@cname()",
+     "date": "@date()",
+     "avatar": "@image('200x200','red','#fff','avatar')",
+     "description": "@cparagraph()",
+     "ip": "@ip()",
+     "email": "@email()",
+     "createdDatetime": "@date('yyyy-MM-dd')"
+   }
+ }
