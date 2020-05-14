@@ -3,6 +3,10 @@ const path = require('path');
 const PurgecssPlugin = require("purgecss-webpack-plugin");
 const glob = require('glob-all');
 const mocker = require('./mock');
+const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
+const CompressionWebpackPlugin = require("compression-webpack-plugin");
+const smp = new SpeedMeasurePlugin();
+const zopfli = require('@gfx/zopfli');
 
 module.exports = {
   configureWebpack: config => {
@@ -29,6 +33,28 @@ module.exports = {
           // whitelistPatternsChildren: [/^token/, /^pre/, /^code/]
         })
       );
+
+      config.plugins.push(
+        // 輸出 Gzip
+        new CompressionWebpackPlugin({
+          filename: "[path].gz[query]",
+          algorithm: "gzip",
+          test: /\.(js|css|json|txt|html|ico|svg)(\?.*)?$/i,
+          threshold: 10240,
+          minRatio: 0.8,
+        })
+        // 啟用 Zopfli 壓縮演算法
+        // new CompressionWebpackPlugin({
+        //   algorithm(input, compressionOptions, callback) {
+        //     return zopfli.gzip(input, compressionOptions, callback);
+        //   },
+        //   compressionOptions: {
+        //     numiterations: 15
+        //   },
+        //   minRatio: 0.99,
+        //   test: /\.(js|css|json|txt|html|ico|svg)(\?.*)?$/i,
+        // })
+      );
     }else{
 
     }
@@ -42,15 +68,22 @@ module.exports = {
         options.fix = true
         return options
       })
+
+    // 指定 alias
     config.resolve.alias
       .set('CC', path.resolve(__dirname, 'src/components/common'))
       .set('Utils', path.resolve(__dirname, 'src/utils'));
 
-    // 在 html 中使用 isProd 語法, 可透過樣板語法取得
-    config.plugin('html').tap(args => {
-      args[0].isProd = IS_PROD
-      return args
-    })
+    if(IS_PROD){
+
+      config
+        // 在 html 中使用 isProd 語法, 可透過樣板語法取得
+        .plugin('html').tap(args => {
+          args[0].isProd = IS_PROD
+          return args
+        })
+    }
+
   },
   css: {
     loaderOptions: {
