@@ -12,17 +12,17 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: _import(/* webpackChunkName: "about" */ "Home")
+    component: _import(/* webpackChunkName: "about" */ "pages/Home/Index")
   },
   {
-    path: "/about",
-    name: "About",
-    component: _import(/* webpackChunkName: "about" */ "About")
+    path: "/login",
+    name: "Login",
+    component: _import(/* webpackChunkName: "about" */ "pages/Login/Index")
   },
   {
     path: "/admin",
     name: "Admin",
-    component: _import(/* webpackChunkName: "admin" */ "Admin")
+    component: _import(/* webpackChunkName: "admin" */ "pages/Admin/Index")
   }
 ];
 

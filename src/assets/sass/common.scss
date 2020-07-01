@@ -8,12 +8,15 @@
 @import "common/mixin";
 @import "common/fonts";
 @import "common/style-effects";
+@import "common/style-effects";
+
 
 // ------ Layout  ------
 @import "common/layout";
 
 // ------ Icon  ------
 @import "common/icons";
+@import "../fonts/icon.css";
 
 // ------ Partials  ------
 @import "partial/header";
