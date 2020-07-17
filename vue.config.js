@@ -80,6 +80,7 @@ module.exports = {
         // 在 html 中使用 isProd 語法, 可透過樣板語法取得
         .plugin('html').tap(args => {
           args[0].isProd = IS_PROD
+          args[0].title = process.env.VUE_APP_SITENAME
           return args
         })
     }
