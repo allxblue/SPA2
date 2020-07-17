@@ -1,6 +1,6 @@
 import request from "./request";
-export const BaseApiUrl = process.env.VUE_APP_G_API
-  ? process.env.VUE_APP_G_API
+export const BaseApiUrl = process.env.VUE_APP_BE_API_URL
+  ? process.env.VUE_APP_BE_API_URL
   : "";
 
 export const userLogin = data => request.post(`${BaseApiUrl}/api/login`, data);
