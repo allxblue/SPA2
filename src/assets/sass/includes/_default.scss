@@ -66,19 +66,3 @@ section, div, main, body{
     background-color: rgba(0, 0, 0, .8);
   }
 }
-
-.nav{
-    display: flex;
-    list-style: none;
-    padding: .5em 1em;
-
-    .nav-items{
-      list-style: none;
-      display: flex;
-    }
-    .nav-item {
-      > a{
-        cursor: pointer;
-      }
-    }
-  }
