@@ -22,6 +22,12 @@ const routes = [
     name: "Admin",
     component: () =>
       import(/* webpackChunkName: "admin" */ "@/pages/Admin/Index.vue")
+  },
+  {
+    path: "/layout/base2col",
+    name: "base2col",
+    component: () =>
+      import(/* webpackChunkName: "admin" */ "@/pages/Layout/base2col.vue")
   }
 ];
 
