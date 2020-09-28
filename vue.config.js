@@ -5,6 +5,7 @@ const glob = require('glob-all');
 const mocker = require('./mock');
 const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
 const CompressionWebpackPlugin = require("compression-webpack-plugin");
+const PrerenderSPAPlugin = require('prerender-spa-plugin');
 const smp = new SpeedMeasurePlugin();
 const zopfli = require('@gfx/zopfli');
 
