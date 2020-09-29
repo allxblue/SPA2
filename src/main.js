@@ -5,10 +5,14 @@ import router from "./router";
 import store from "./store";
 import { i18n } from "@/locale";
 import API from "@/api";
+import { Message, Notification } from "element-ui";
+import "element-ui/lib/theme-chalk/index.css";
 
 Vue.prototype.$api = API; // 彙整 API
 Vue.config.productionTip = false;
 Vue.prototype.$bus = new Vue();
+Vue.prototype.$msg = Message;
+Vue.prototype.$notify = Notification;
 
 new Vue({
   router,
