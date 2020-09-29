@@ -1,15 +1,44 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import { baseUrl, getValFromUrl } from "@/utils";
+import { objToUrlQuery } from "@/utils";
+import HFLayout from "@/pages/Layout/baseHF"; // 基本天地
+import base2col from "@/pages/Layout/base2col"; // 基本雙欄
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: () =>
-      import(/* webpackChunkName: "home" */ "@/pages/Home/Index.vue")
+    name: "Base",
+    component: HFLayout,
+    children: [
+      // 首页
+      {
+        path: "",
+        name: "index",
+        hidden: true,
+        meta: {
+          title: "首頁",
+          auth: true
+        },
+        component: () =>
+          import(/* webpackChunkName: "Home" */ "@/pages/Home/Index.vue")
+      },
+
+      {
+        // news
+        path: "news",
+        name: "index",
+        hidden: true,
+        meta: {
+          title: "最新消息",
+          auth: true
+        },
+        component: () =>
+          import(/* webpackChunkName: "News" */ "@/pages/Home/News.vue")
+      }
+    ]
   },
   {
     path: "/login",

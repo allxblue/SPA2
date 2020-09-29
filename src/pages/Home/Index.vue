@@ -1,4 +1,10 @@
-<template><div></div></template>
+<template>
+  <div class="page-container">
+    <div class="main">
+      Index
+    </div>
+  </div>
+</template>
 
 <script>
 export default {
@@ -10,4 +16,10 @@ export default {
 };
 </script>
 
-<style lang="css" scoped></style>
+<style lang="scss" scoped>
+.page-container {
+}
+.main {
+  height: 2000px;
+}
+</style>

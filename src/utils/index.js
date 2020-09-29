@@ -32,4 +32,16 @@ const getValFromUrl = key =>
       )
     : {})[key];
 
-export { baseUrl, checkLoginStatus, withPrefix, getPrefix, getValFromUrl };
+const objToUrlQuery = obj =>
+  Object.keys(obj)
+    .map(k => `${encodeURIComponent(k)}=${encodeURIComponent(obj[k])}`)
+    .join("&");
+
+export {
+  baseUrl,
+  checkLoginStatus,
+  withPrefix,
+  getPrefix,
+  getValFromUrl,
+  objToUrlQuery
+};
