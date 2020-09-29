@@ -8,6 +8,8 @@ const CompressionWebpackPlugin = require("compression-webpack-plugin");
 const PrerenderSPAPlugin = require('prerender-spa-plugin');
 const smp = new SpeedMeasurePlugin();
 const zopfli = require('@gfx/zopfli');
+// 將環境變數指入
+process.env.VUE_APP_VERSION = require('./package.json').version
 
 module.exports = {
   configureWebpack: config => {
