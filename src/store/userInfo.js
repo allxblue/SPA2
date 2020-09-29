@@ -1,4 +1,4 @@
-import { userLogin } from "@/api/backendAPI";
+import { userLogin, logout } from "@/api/user";
 import Cookie from "@/utils/cookie";
 import { getValFromUrl } from "@/utils";
 
@@ -7,13 +7,14 @@ const CALL_API_LOADING = "CALL_API_LOADING";
 const USER_TOKEN_ERROR = "USER_TOKEN_ERROR";
 
 export default {
+  // namespaced: true,
   state: {
     profile: null,
     isRecieved: false,
     isLogin: false
   },
   actions: {
-    userLogin({ commit }, payload) {
+    login({ commit }, payload) {
       commit("CALL_API_LOADING", true);
       userLogin({
         uuid: payload.uuid
@@ -31,6 +32,10 @@ export default {
         }
         commit("CALL_API_LOADING", false);
       });
+    },
+    logout({ commit }, payload) {
+      commit("CALL_API_LOADING", true);
+      logout({}).then(res => {});
     }
   },
   mutations: {

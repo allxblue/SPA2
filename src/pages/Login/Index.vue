@@ -64,6 +64,7 @@
   </div>
 </template>
 <script>
+import { mapActions } from "vuex";
 export default {
   name: "Login",
 
@@ -73,6 +74,16 @@ export default {
       isPasswordFocus: false,
       isTriggerLogin: false
     };
+  },
+  created() {
+    // this.$store.dispatch("login", {
+    //   account: "test",
+    //   pwd: "pwd"
+    // });
+    // this.logout();
+  },
+  methods: {
+    ...mapActions("user", ["login", "logout"]) // 把 user 的 login 及 logout action 綁到 this 上
   }
 };
 </script>
