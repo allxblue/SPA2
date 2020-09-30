@@ -7,12 +7,21 @@
 </template>
 
 <script>
+import { mapActions, mapState } from "vuex";
 export default {
   name: "Index",
 
   data() {
     return {};
-  }
+  },
+  computed: {
+    ...mapState({
+      user: state => state.user
+    })
+  },
+  methods: {
+    ...mapActions(["login", "logout", "getUserInfo", "checkLogin"])
+  },
 };
 </script>
 

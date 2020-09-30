@@ -1,4 +1,4 @@
-import { userLogin, logout } from "@/api/user";
+import { userLogin, logout, getUserInfo, checkLogin } from "@/api/user";
 import Cookie from "@/utils/cookie";
 import { getValFromUrl } from "@/utils";
 
@@ -14,21 +14,15 @@ export default {
     isLogin: false
   },
   actions: {
-    login({ commit }, payload) {
+    login({ dispatch, commit }, payload) {
       commit("CALL_API_LOADING", true);
-      userLogin({
-        uuid: payload.uuid
-      }).then(res => {
-        if (String(res.data.error_code) === "0") {
-          let userInfo = {
-            // 吃網址
-            uuid: payload.uuid,
-            token: payload.token
-          };
-          commit("RECEIVE_USER_INFO", userInfo);
-        } else if (String(res.data.error_code) === "110") {
-          // token 錯誤
-          commit("USER_TOKEN_ERROR", true);
+      userLogin(payload).then(res => {
+        console.log(res);
+        if (String(res.status) === "1") {
+          // 登入去取資料
+          dispatch("getUserInfo");
+        } else {
+          commit("USER_TOKEN_ERROR", false);
         }
         commit("CALL_API_LOADING", false);
       });
@@ -36,11 +30,27 @@ export default {
     logout({ commit }, payload) {
       commit("CALL_API_LOADING", true);
       logout({}).then(res => {});
+    },
+    getUserInfo({ commit }, payload) {
+      getUserInfo().then(res => {
+        commit("RECEIVE_USER_INFO", res.data);
+        commit("CALL_API_LOADING", false);
+      });
+    },
+    checkLogin({ dispatch, commit }, payload) {
+      checkLogin().then(res => {
+        if (res.status) {
+          dispatch("getUserInfo");
+        } else {
+          commit("USER_TOKEN_ERROR", "已登出");
+        }
+        commit("CALL_API_LOADING", false);
+      });
     }
   },
   mutations: {
-    [RECEIVE_USER_INFO](state, result) {
-      state.profile = result;
+    [RECEIVE_USER_INFO](state, val) {
+      state.profile = val;
       state.isLogin = true;
       state.isRecieved = true;
     },
