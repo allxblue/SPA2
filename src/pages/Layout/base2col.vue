@@ -21,10 +21,15 @@
           </div>
         </div>
       </div>
-      <div class="app-content">
+      <div class="main-section">
         <div class="content-wrapper">
           <div class="main-content">
-            內容放這
+            <keep-alive>
+              <router-view />
+            </keep-alive>
+            <div class="footer">
+              {{ `©2020 by ${siteName} ${ver} , All Rights Reserved.` }}
+            </div>
           </div>
         </div>
       </div>
@@ -47,6 +52,8 @@ $topH: 60px;
 $sidebarW: 234px;
 $sidebarBgColor: #322e2b;
 $sidebarColor: #bdbdbd;
+$footerH: 20px;
+
 ul {
   list-style: none;
 }
@@ -86,7 +93,7 @@ body {
 }
 
 // 內容區
-.app-content {
+.main-section {
   position: relative;
   height: 100%;
 }
@@ -97,7 +104,19 @@ body {
 }
 
 .main-content {
-  height: 200%;
+  position: relative;
+  min-height: calc(100vh - #{$topH});
+  padding-bottom: $footerH;
+  box-sizing: border-box;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: $footerH;
+  text-align: center;
 }
 
 .top-bar {
