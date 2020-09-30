@@ -2,7 +2,6 @@
   <div class="app-wrapper">
     <div class="app-container">
       <aside class="sidebar">
-        <div class="top-area"></div>
         <nav class="nav">
           <ul class="items">
             <li class="item"><a href="#">Nav 1</a></li>
@@ -13,18 +12,16 @@
           </ul>
         </nav>
       </aside>
-      <div class="top-bar">
-        <div class="top-bar-inner">
-          <div class="left"></div>
-          <div class="right">
-            User
-          </div>
-        </div>
-      </div>
+
       <div class="app-content">
-        <div class="content-wrapper">
-          <div class="main-content">
-            內容放這
+        <div class="main-wrapper">
+          <div class="top-bar">
+            上方
+          </div>
+          <div class="content-wrapper">
+            <div class="main-content">
+              內容放這
+            </div>
           </div>
         </div>
       </div>
@@ -43,10 +40,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$topH: 60px;
-$sidebarW: 234px;
-$sidebarBgColor: #322e2b;
-$sidebarColor: #bdbdbd;
 ul {
   list-style: none;
 }
@@ -62,11 +55,10 @@ body {
 .app-container {
   position: relative;
   margin: 0 auto;
+  width: 80%;
   height: 100%;
-  background: #f5f5f5;
-  width: 100%;
-  padding: $topH 0 0 $sidebarW;
-  box-sizing: border-box;
+  max-width: 1600px;
+  background: #ccc;
 }
 
 // 左邊選單區
@@ -74,25 +66,41 @@ body {
   position: absolute;
   left: 0;
   top: 0;
-  width: $sidebarW;
+  width: 200px;
   height: 100%;
-  background: $sidebarBgColor;
-  color: $sidebarColor;
+  background: rgba(0, 0, 0, 0.5);
   z-index: 1;
-
-  .top-area {
-    height: $topH;
-  }
 }
 
 // 內容區
 .app-content {
   position: relative;
+  padding-left: 210px; // 200(側邊欄寬) + 10px (邊距)
   height: 100%;
 }
 
+// 主區塊(拆上下)
+.main-wrapper {
+  position: relative;
+  padding-top: 110px; // 100(.top-bar高度) + 10px (邊距)
+  height: 100%;
+  overflow: auto;
+  box-sizing: border-box;
+}
+
+// 上方區塊定住
+.top-bar {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  height: 100px;
+  background: rgba(15, 37, 45, 0.25);
+}
+
+// 中間區塊定住(再拆內層)
 .content-wrapper {
   height: 100%;
+  background: #caf;
   overflow: auto;
 }
 
@@ -100,40 +108,11 @@ body {
   height: 200%;
 }
 
-.top-bar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding-left: $sidebarW;
-  width: 100%;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.09);
-  height: $topH;
-  background: #fff;
-  display: flex;
-  box-sizing: border-box;
-
-  .top-bar-inner {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .left {
-  }
-
-  .right {
-    padding-right: 20px;
-  }
-}
-
 .nav {
   .items {
-    width: 100%;
   }
   // 不會重複就拆少層，以後要覆寫比較好寫
   .item {
-    width: 100%;
     & + .item {
       border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
