@@ -4,7 +4,9 @@ import { baseUrl, getValFromUrl } from "@/utils";
 import { objToUrlQuery } from "@/utils";
 import HFLayout from "@/pages/Layout/baseHF"; // 基本天地
 import base2col from "@/pages/Layout/base2col"; // 基本雙欄
-
+import NProgress from "nprogress";
+import { getToken } from "@/utils/auth"; // get token from cookie
+import store from "@/store";
 Vue.use(VueRouter);
 
 const routes = [
@@ -64,6 +66,39 @@ const router = new VueRouter({
   mode: "history",
   base: baseUrl,
   routes
+});
+
+router.beforeEach(async (to, from, next) => {
+  NProgress.start();
+  let siteName = process.env.VUE_APP_SITENAME;
+  document.title = to.meta.title ? to.meta.title : siteName;
+
+  const hasToken = getToken();
+  if (hasToken && store.getters.needCheckLogin) {
+    // 有 token vuex 尚未有紀錄
+    store.dispatch("getUserInfo");
+  }
+  if (hasToken && to.path === "/login") {
+    // 有登入去登入頁則轉走
+
+    next({ path: "/" });
+    NProgress.done();
+  }
+
+  if (to.matched.some(r => r.meta.auth)) {
+    // 需要驗證的頁面
+    if (hasToken) {
+      // 有登入
+      next();
+      NProgress.done();
+    } else {
+      next(`/login?redirect=${to.path}`);
+      NProgress.done();
+    }
+  } else {
+    next();
+    NProgress.done();
+  }
 });
 
 export default router;

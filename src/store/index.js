@@ -15,6 +15,9 @@ export default new Vuex.Store({
     },
     version: state => {
       return state.env.VUE_APP_VERSION;
+    },
+    needCheckLogin: state => {
+      return !state.user.isRecieved;
     }
   },
   modules: {

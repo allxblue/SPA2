@@ -1,5 +1,5 @@
-import { userLogin, logout, getUserInfo, checkLogin } from "@/api/user";
-import Cookie from "@/utils/cookie";
+import { userLogin, logout, getUserInfo, checkLogin } from "@/api/base";
+import Cookie from "@/utils/cookie"; // copy from js.cookie
 import { getValFromUrl } from "@/utils";
 
 const RECEIVE_USER_INFO = "RECEIVE_USER_INFO";
@@ -15,16 +15,23 @@ export default {
   },
   actions: {
     login({ dispatch, commit }, payload) {
-      commit("CALL_API_LOADING", true);
-      userLogin(payload).then(res => {
-        console.log(res);
-        if (String(res.status) === "1") {
-          // 登入去取資料
-          dispatch("getUserInfo");
-        } else {
-          commit("USER_TOKEN_ERROR", false);
-        }
-        commit("CALL_API_LOADING", false);
+      return new Promise((resolve, reject) => {
+        commit("CALL_API_LOADING", true);
+        userLogin(payload)
+          .then(res => {
+            console.log(res);
+            if (String(res.status) === "1") {
+              // 登入去取資料
+              dispatch("getUserInfo");
+              resolve();
+            } else {
+              commit("USER_TOKEN_ERROR", false);
+            }
+            commit("CALL_API_LOADING", false);
+          })
+          .catch(error => {
+            reject(error);
+          });
       });
     },
     logout({ commit }, payload) {

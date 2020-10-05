@@ -16,6 +16,7 @@
     "better-scroll": "^2.0.3",
     "core-js": "^3.6.4",
     "element-ui": "^2.13.1",
+    "nprogress": "^0.2.0",
     "prerender-spa-plugin": "^3.4.0",
     "register-service-worker": "^1.7.1",
     "vue": "^2.6.11",
