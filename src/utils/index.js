@@ -37,11 +37,18 @@ const objToUrlQuery = obj =>
     .map(k => `${encodeURIComponent(k)}=${encodeURIComponent(obj[k])}`)
     .join("&");
 
+const isMobile = () =>
+  window.matchMedia("(max-width: 780px)").matches ||
+  /Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(
+    navigator.userAgent
+  );
+
 export {
   baseUrl,
   checkLoginStatus,
   withPrefix,
   getPrefix,
   getValFromUrl,
-  objToUrlQuery
+  objToUrlQuery,
+  isMobile
 };
