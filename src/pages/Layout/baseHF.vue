@@ -71,6 +71,7 @@ $maxW: 1600px;
     top: 0;
     left: 0;
     width: 100%;
+    z-index: 2;
 
     > .app-inner {
       display: flex;
