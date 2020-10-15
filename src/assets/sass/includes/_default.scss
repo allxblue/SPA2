@@ -66,3 +66,21 @@ section, div, main, body{
     background-color: rgba(0, 0, 0, .8);
   }
 }
+
+
+body #nprogress {
+  .bar {
+    background: $mainColor;
+    z-index: 10;
+  }
+
+  .spinner-icon {
+    border-top-color: $mainColor;
+    border-left-color: $mainColor;
+  }
+
+  .peg{
+    box-shadow: 0 0 10px darken($mainColor, .1), 0 0 5px darken($mainColor, .1);
+  }
+}
+

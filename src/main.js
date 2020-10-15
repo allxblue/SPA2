@@ -8,6 +8,7 @@ import API from "@/api";
 import { Message, Notification } from "element-ui";
 import { isMobile } from "@/utils";
 import "element-ui/lib/theme-chalk/index.css";
+import "nprogress/nprogress.css";
 
 Vue.prototype.$api = API; // 彙整 API
 Vue.config.productionTip = false;

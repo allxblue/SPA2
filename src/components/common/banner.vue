@@ -85,5 +85,8 @@ export default {
       display: none;
     }
   }
+  ::v-deep .swiper-pagination-bullet-active {
+    background: $mainColor;
+  }
 }
 </style>
