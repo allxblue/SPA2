@@ -43,6 +43,22 @@ const isMobile = () =>
     navigator.userAgent
   );
 
+const loadInfo = () => {
+  let name = "🎲" + process.env.VUE_APP_SITENAME,
+    ver = process.env.VUE_APP_VERSION || "0.0.1",
+    bg = "BLUEVIOLET";
+
+  console.log(
+    "%c ".concat(name, " %c ").concat(ver, " %c "),
+    "background:#35495E; padding: 2px; border-radius: 3px 0 0 3px; color: #fff;",
+    "background:".concat(
+      bg,
+      "; padding: 2px; border-radius: 0 3px 3px 0;  color: #fff;"
+    ),
+    "background:transparent"
+  );
+};
+loadInfo();
 export {
   baseUrl,
   checkLoginStatus,
