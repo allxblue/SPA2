@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" :class="{ [`page-${pageTitle}`]: true }">
     <router-view />
   </div>
 </template>
@@ -9,6 +9,16 @@
 import "@/assets/sass/common.scss";
 export default {
   name: "Home",
+  data: function() {
+    return {};
+  },
+  computed: {
+    pageTitle() {
+      return this.$route.meta && this.$route.meta.class
+        ? this.$route.meta.class
+        : "default";
+    }
+  },
   components: {}
 };
 </script>

@@ -22,7 +22,7 @@ const routes = [
         hidden: true,
         meta: {
           title: "首頁",
-          auth: true
+          class: "index"
         },
         component: () =>
           import(/* webpackChunkName: "Home" */ "@/pages/Home/Index.vue")
@@ -35,6 +35,7 @@ const routes = [
         hidden: true,
         meta: {
           title: "最新消息",
+          class: "news",
           auth: true
         },
         component: () =>
