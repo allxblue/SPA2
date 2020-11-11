@@ -7,7 +7,23 @@
           <dd class="img" :style="`background-image: url(${item.image})`"></dd>
         </dl>
       </swiper-slide>
-      <div class="swiper-pagination" slot="pagination"></div>
+      <div
+        class="swiper-pagination"
+        slot="pagination"
+        v-if="showPagination"
+      ></div>
+      <div
+        class="navigation-btn swiper-button-prev"
+        slot="button-prev"
+        v-if="showNavigation"
+        @click="bannerPrev"
+      ></div>
+      <div
+        class="navigation-btn swiper-button-next"
+        slot="button-next"
+        v-if="showNavigation"
+        @click="bannerNext"
+      ></div>
     </swiper>
   </div>
 </template>
@@ -19,11 +35,11 @@ import { mapGetters } from "vuex";
 // "swiper": "5.4.5", 鎖版本，6.x 會有問題
 export default {
   name: "banner",
+  props: ["data", "pagination", "navigation"],
   components: {
     Swiper,
     SwiperSlide
   },
-  props: ["data"],
   data() {
     return {
       swiperOptions: {
@@ -41,14 +57,42 @@ export default {
         pagination: {
           el: ".swiper-pagination",
           clickable: true
+        },
+        swiperOption: {
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev"
+          }
         }
       }
     };
   },
+  mounted() {
+    console.log("!!", this.pagination, this.navigation);
+  },
   computed: {
-    ...mapGetters({
-      env: "env"
-    })
+    showPagination() {
+      let show = true;
+      if (typeof this.pagination !== "undefined" && !this.pagination) {
+        show = false;
+      }
+      return show;
+    },
+    showNavigation() {
+      let show = false;
+      if (typeof this.navigation !== "undefined") {
+        show = true;
+      }
+      return show;
+    }
+  },
+  methods: {
+    bannerPrev() {
+      this.$refs.mySwiper.$swiper.slidePrev();
+    },
+    bannerNext() {
+      this.$refs.mySwiper.$swiper.slideNext();
+    }
   }
 };
 </script>
@@ -87,6 +131,47 @@ export default {
   }
   ::v-deep .swiper-pagination-bullet-active {
     background: $mainColor;
+  }
+}
+</style>
+<style lang="scss">
+.navigation-btn {
+  background: rgba(0, 0, 0, 0.5);
+  width: 40px;
+  height: 70px;
+  color: #fff;
+  transition: background 1s cubic-bezier(0.23, 1, 0.32, 1);
+  &:before {
+    content: "";
+    position: absolute;
+    left: -20px;
+    top: 0;
+    width: 80px;
+    background: rgba(0, 0, 0, 0);
+  }
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.6);
+  }
+
+  &:after {
+    font-size: 30px;
+  }
+
+  &.swiper-button-prev {
+    left: 20px;
+    transition: left 0.2s ease-in-out;
+    &:hover {
+      left: 10px;
+    }
+  }
+
+  &.swiper-button-next {
+    right: 20px;
+    transition: right 0.2s ease-in-out;
+    &:hover {
+      right: 10px;
+    }
   }
 }
 </style>

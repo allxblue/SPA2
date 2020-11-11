@@ -18,17 +18,17 @@ export default {
     return {
       banners: [
         {
-          titlle: "banner1",
+          title: "banner1",
           url: "www.google.com",
           image: "https://picsum.photos/1920/500?v=1"
         },
         {
-          titlle: "banner2",
+          title: "banner2",
           url: "www.google.com",
           image: "https://picsum.photos/1920/500?v=2"
         },
         {
-          titlle: "banner3",
+          title: "banner3",
           url: "www.google.com",
           image: "https://picsum.photos/1920/500?v=3"
         }
