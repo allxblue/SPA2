@@ -58,6 +58,19 @@ const loadInfo = () => {
     "background:transparent"
   );
 };
+
+const debounce = (fn, delay) => {
+  let timeoutID = null;
+  return function() {
+    clearTimeout(timeoutID);
+    var args = arguments;
+    var that = this;
+    timeoutID = setTimeout(function() {
+      fn.apply(that, args);
+    }, delay);
+  };
+};
+
 loadInfo();
 export {
   baseUrl,
@@ -66,5 +79,6 @@ export {
   getPrefix,
   getValFromUrl,
   objToUrlQuery,
-  isMobile
+  isMobile,
+  debounce
 };
