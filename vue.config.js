@@ -85,6 +85,7 @@ module.exports = {
           args[0].isProd = IS_PROD
           args[0].title = process.env.VUE_APP_SITENAME
           args[0].ver = process.env.VUE_APP_VERSION
+          args[0].baseColor = process.env.VUE_APP_BASE_COLOR
           return args
         })
     }
