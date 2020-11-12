@@ -74,6 +74,7 @@ module.exports = {
 
     // 指定 alias
     config.resolve.alias
+      .set('Imgs', path.resolve(__dirname, 'src/assets/images'))
       .set('CC', path.resolve(__dirname, 'src/components/common'))
       .set('Utils', path.resolve(__dirname, 'src/utils'));
 
