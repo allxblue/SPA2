@@ -14,23 +14,21 @@ process.env.VUE_APP_VERSION = require('./package.json').version
 module.exports = {
   configureWebpack: config => {
     if (IS_PROD) {
-      config.plugins.push( // 拔掉不需要的 css
+      config.plugins.push( // 拔掉不需要的 css，需注意使用動態 class 會被拔掉
         new PurgecssPlugin({
           paths: glob.sync([path.join(__dirname, "./**/*.vue")]),
-          extractors: [
-            {
-              extractor: class Extractor {
-                static extract(content) {
-                  const validSection = content.replace(
-                    /<style([\s\S]*?)<\/style>+/gim,
-                    ""
-                  );
-                  return validSection.match(/[A-Za-z0-9-_:/]+/g) || [];
-                }
-              },
-              extensions: ["html", "vue"]
-            }
-          ],
+          extractors: [{
+            extractor: class Extractor {
+              static extract(content) {
+                const validSection = content.replace(
+                  /<style([\s\S]*?)<\/style>+/gim,
+                  ""
+                );
+                return validSection.match(/[A-Za-z0-9-_:/]+/g) || [];
+              }
+            },
+            extensions: ["html", "vue"]
+          }],
           whitelist: ["html", "body"],
           whitelistPatterns: [/el-.*/, /^icon/],
           // whitelistPatternsChildren: [/^token/, /^pre/, /^code/]
@@ -58,7 +56,7 @@ module.exports = {
         //   test: /\.(js|css|json|txt|html|ico|svg)(\?.*)?$/i,
         // })
       );
-    }else{
+    } else {
 
     }
   },
@@ -78,7 +76,7 @@ module.exports = {
       .set('CC', path.resolve(__dirname, 'src/components/common'))
       .set('Utils', path.resolve(__dirname, 'src/utils'));
 
-    if(IS_PROD){
+    if (IS_PROD) {
 
       config
         // 在 html 中使用 isProd 語法, 可透過樣板語法取得
@@ -108,6 +106,18 @@ module.exports = {
     compress: false,
     open: true,
     hot: true,
+    proxy: {
+      '/api': {
+        target: "https://yoururl/api",
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': ""
+        },
+        onProxyReq: function (proxyReq, req, res) {
+          proxyReq.setHeader('Origin', 'localhost:8912');
+        }
+      }
+    },
     stats: {
       colors: true,
       hash: false,

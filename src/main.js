@@ -10,7 +10,7 @@ import { isMobile } from "@/utils";
 import "element-ui/lib/theme-chalk/index.css";
 import "nprogress/nprogress.css";
 
-Vue.prototype.$api = API; // 彙整 API
+Vue.prototype.$API = API; // 彙整 API
 Vue.config.productionTip = false;
 Vue.prototype.$bus = new Vue();
 Vue.prototype.$msg = Message;
