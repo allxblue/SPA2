@@ -87,6 +87,11 @@ module.exports = {
           args[0].baseColor = process.env.VUE_APP_BASE_COLOR
           return args
         })
+
+      // 拔掉 PWA 及 workservice，另外要移除 registerServiceWorker.js
+      config.plugins.delete('pwa');
+      config.plugins.delete('workbox');
+
     }
 
   },
