@@ -66,7 +66,10 @@ const routes = [
 const router = new VueRouter({
   mode: "history",
   base: baseUrl,
-  routes
+  routes,
+  scrollBehavior: (to, from, savedPosition) => { // 切換頁面回上
+    return { x: 0, y: 0 };
+  }
 });
 
 router.beforeEach(async (to, from, next) => {
