@@ -21,6 +21,12 @@
   display: none !important;
 }
 
+%close-btn{
+  &:after{
+    content: "✖"
+  }
+}
+
 %paused {
   -webkit-animation-play-state: paused;
      -moz-animation-play-state: paused;
